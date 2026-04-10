@@ -13,8 +13,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,7 +34,7 @@ public class ExternalCommandReceiver extends BroadcastReceiver {
     private static final String START_UPLOAD = "start upload";
     private static final String GET_TRACK_ID = "get track id";
 
-    public static final String BROADCAST_TRACK_ID = "net.fabiszewski.ulogger.broadcast.track_id";
+    public static final String BROADCAST_TRACK_ID = BuildConfig.APPLICATION_ID + ".broadcast.track_id";
     public static final String EXTRA_TRACK_ID = "trackId";
 
     @Override
@@ -109,10 +107,8 @@ public class ExternalCommandReceiver extends BroadcastReceiver {
     */
     private void sendTrackId(@NonNull Context context) {
         int trackId = DbAccess.getTrackId(context);
-        // Create intent without restricting to package (allows external receivers like Tasker)
         Intent intent = new Intent(BROADCAST_TRACK_ID);
         intent.putExtra(EXTRA_TRACK_ID, trackId);
-        // Send as a public broadcast (accessible to other apps)
         context.sendBroadcast(intent);
     }
 }
