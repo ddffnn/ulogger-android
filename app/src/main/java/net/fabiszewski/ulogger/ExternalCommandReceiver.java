@@ -24,7 +24,6 @@ import net.fabiszewski.ulogger.services.LoggerService;
 import net.fabiszewski.ulogger.services.WebSyncService;
 import net.fabiszewski.ulogger.ui.AutoNamePreference;
 import net.fabiszewski.ulogger.ui.SettingsActivity;
-import net.fabiszewski.ulogger.utils.BroadcastHelper;
 
 public class ExternalCommandReceiver extends BroadcastReceiver {
 
